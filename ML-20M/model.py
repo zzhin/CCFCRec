@@ -76,7 +76,6 @@ class CCFCRec(nn.Module):
         z_v = torch.matmul(attr_attention_b.transpose(1, 2), attr_present).squeeze()  # z_v是属性经过注意力加权融合后的向量
         p_v = torch.matmul(image_feature, self.image_projection)  # item的图像嵌入向量
         q_v_a = torch.cat((z_v, p_v), dim=1)
-        # 判断q_v_c是否使用user
         q_v_c = self.gen_layer2(self.h(self.gen_layer1(q_v_a)))
         return q_v_c
 
@@ -161,7 +160,7 @@ def train(model, train_loader, optimizer, valida, args):
                 model.eval()
                 print("[{},/13931603]total_loss:,{},{},s".format(i_batch*1024, total_loss.item(), int(time.time()-batch_time)))
                 with torch.no_grad():
-                    p_5, p_10, p_20, ndcg_5, ndcg_10, ndcg_20 = valida.start_validate(model)
+                    hr_5, hr_10, hr_20, ndcg_5, ndcg_10, ndcg_20 = valida.start_validate(model)
                 with open(test_save_path, 'a+') as f:
                     f.write("{},{},{},{},{},{},{},{},{}\n".format(y_ukv+y_ukv2, contrast_sum, self_contrast_sum, p_5, p_10, p_20, ndcg_5, ndcg_10, ndcg_20))
                 # 保存模型

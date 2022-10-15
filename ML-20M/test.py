@@ -134,6 +134,6 @@ if __name__ == '__main__':
     load_array = ['0batch_3000', '0batch_6000']
     for model in load_array:
         myModel.load_state_dict(torch.load(load_dir+'/epoch_'+model+'.pt'))
-        p5, p_10, p_20, n_5, n_10, n_20 = validator.start_validate(myModel)
+        hr5, hr_10, hr_20, n_5, n_10, n_20 = validator.start_validate(myModel)
         with open(test_result_name, 'a+') as f:
-            f.write("{},{},{},{},{},{}\n".format(p5, p_10, p_20, n_5, n_10, n_20))
+            f.write("{},{},{},{},{},{}\n".format(hr5, hr_10, hr_20, n_5, n_10, n_20))

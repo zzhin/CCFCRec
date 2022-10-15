@@ -147,6 +147,6 @@ if __name__ == '__main__':
     load_array = ['98', '99', '100']
     for model in load_array:
         myModel.load_state_dict(torch.load(load_dir+'/'+model+'.pt'))
-        p5, p_10, p_20, n_5, n_10, n_20 = validator.start_validate(myModel)
+        hr5, hr_10, hr_20, n_5, n_10, n_20 = validator.start_validate(myModel)
         with open(test_result_name, 'a+') as f:
             f.write("{},{},{},{},{},{}\n".format(p5, p_10, p_20, n_5, n_10, n_20))
