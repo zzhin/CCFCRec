@@ -17,7 +17,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 torch.cuda.set_device(1)
 
-# CCFCRec means Multi-Modality Cold-start Recommend Contrast
+# CCFCRec
 
 
 class CCFCRec(nn.Module):
@@ -36,7 +36,7 @@ class CCFCRec(nn.Module):
         self.softmax = torch.nn.Softmax(dim=0)
         # 图像的映射矩阵
         self.image_projection = torch.nn.Parameter(torch.FloatTensor(4096, args.implicit_dim))
-        self.sigmoid = torch.nn.Sigmoid()  # 将门控信号映射到[0, 1]之间
+        self.sigmoid = torch.nn.Sigmoid()
         # user和item的嵌入层，可用预训练的进行初始化
         if args.pretrain is True:
             if args.pretrain_update is True:

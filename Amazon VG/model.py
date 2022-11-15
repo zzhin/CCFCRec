@@ -22,7 +22,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 #torch.cuda.set_device(1)
 
 
-# CCFCRec means Multi-Modality Cold-start Recommend Contrast
+# CCFCRec
 class CCFCRec(nn.Module):
     def __init__(self, args):
         super(CCFCRec, self).__init__()
