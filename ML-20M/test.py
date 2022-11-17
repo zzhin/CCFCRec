@@ -92,9 +92,9 @@ class Validate:
                 recommend_users = get_similar_user_speed(model, genres, img_feature, max_k)
             # 计算hr指标
             # 计算p@k指标
-            hr_hit_cnt_5 += p_at_k(it, recommend_users, self.item_user_dict, 5)
-            hr_hit_cnt_10 += p_at_k(it, recommend_users, self.item_user_dict, 10)
-            hr_hit_cnt_20 += p_at_k(it, recommend_users, self.item_user_dict, 20)
+            hr_hit_cnt_5 += hr_at_k(it, recommend_users, self.item_user_dict, 5)
+            hr_hit_cnt_10 += hr_at_k(it, recommend_users, self.item_user_dict, 10)
+            hr_hit_cnt_20 += hr_at_k(it, recommend_users, self.item_user_dict, 20)
             # 计算NDCG指标
             ndcg_sum_5 += ndcg_k(it, recommend_users, self.item_user_dict, 5)
             ndcg_sum_10 += ndcg_k(it, recommend_users, self.item_user_dict, 10)

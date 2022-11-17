@@ -1,4 +1,7 @@
 import pickle
+import os
+import pandas as pd
+
 
 def serial_asin_category(pkl_name='data/asin_int_category.pkl'):
     if os.path.exists(pkl_name) is True:
@@ -7,7 +10,7 @@ def serial_asin_category(pkl_name='data/asin_int_category.pkl'):
         # data['asin_category_int_map']， asin: category, category为经过顺序化后的属性
         # data['category_ser_map']， category: category_int_num, category对应的顺序编号
         return data['asin_category_int_map'], data['category_ser_map']
-    asin_df = pd.read_csv("../data/asin.csv")
+    asin_df = pd.read_csv("data/asin.csv")
     category_set = set([])
     for idx, row in asin_df.iterrows():
         cat = row['category'].split(',')

@@ -50,6 +50,8 @@ def build_user_item_interaction_dict(train_csv='data/train_rating.csv',
         pkl_file = open(user_item_interaction_dict_save, 'rb')
         data = pickle.load(pkl_file)
         return data['user_item_interaction_dict']
+    if os.path.exists("pkl") is False:
+        os.makedirs("pkl")
     df = pd.read_csv(train_csv)
     user_item_interaction_dict = {}
     for _, row in tqdm(df.iterrows()):
@@ -74,6 +76,8 @@ def build_item_user_interaction_dict(train_csv='data/train_rating.csv',
         pkl_file = open(item_user_interaction_dict_save, 'rb')
         data = pickle.load(pkl_file)
         return data['item_user_interaction_dict']
+    if os.path.exists("pkl") is False:
+        os.makedirs("pkl")
     df = pd.read_csv(train_csv)
     item_user_interaction_dict = {}
     for _, row in tqdm(df.iterrows()):

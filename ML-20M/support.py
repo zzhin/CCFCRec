@@ -15,6 +15,8 @@ from tqdm import tqdm
 # 返回一个dict， userId: [positive_sample(list), negative_sample(list(list))]
 def read_user_positive_negative_movies(user_positive_movie_csv, refresh=False):
     pkl_name = 'pkl/user_pn_dict.pkl'
+    if os.path.exists("pkl") is False:
+        os.makedirs("pkl")
     if (os.path.exists(pkl_name) is True) and (refresh is False):
         pkl_file = open(pkl_name, 'rb')
         data = pickle.load(pkl_file)

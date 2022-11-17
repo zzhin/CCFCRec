@@ -177,7 +177,7 @@ def train(model, train_loader, optimizer, valida, args, model_save_dir):
 if __name__ == '__main__':
     # result save dir
     save_dir = 'result/' + time.strftime('%Y-%m-%d_%H_%M_%S', time.localtime(time.time()))
-    os.mkdir(save_dir)
+    os.makedirs(save_dir)
     # args
     args = get_args()
     print("progress start at:", time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))

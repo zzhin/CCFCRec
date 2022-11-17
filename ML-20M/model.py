@@ -65,9 +65,6 @@ class CCFCRec(nn.Module):
             nn.init.xavier_normal_(self.item_embedding)
         nn.init.xavier_normal_(self.gen_layer1.weight)
         nn.init.xavier_normal_(self.gen_layer2.weight)
-        # image
-        nn.init.xavier_normal_(self.image_line1.weight)
-        nn.init.xavier_normal_(self.image_line2.weight)
 
     def forward(self, attribute, image_feature, user_id):
         attr_present = self.attr_matrix(attribute)
@@ -162,7 +159,8 @@ def train(model, train_loader, optimizer, valida, args):
                 with torch.no_grad():
                     hr_5, hr_10, hr_20, ndcg_5, ndcg_10, ndcg_20 = valida.start_validate(model)
                 with open(test_save_path, 'a+') as f:
-                    f.write("{},{},{},{},{},{},{},{},{}\n".format(y_ukv+y_ukv2, contrast_sum, self_contrast_sum, p_5, p_10, p_20, ndcg_5, ndcg_10, ndcg_20))
+                    f.write("{},{},{},{},{},{},{},{},{}\n".format(y_ukv+y_ukv2, contrast_sum, self_contrast_sum,
+                                                                  hr_5, hr_10, hr_20, ndcg_5, ndcg_10, ndcg_20))
                 # 保存模型
                 batch_time = time.time()
                 torch.save(model.state_dict(), model_save_dir + '/epoch_' + str(i_epoch) + "batch_" + str(i_batch) + ".pt")
